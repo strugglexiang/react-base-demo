@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+    <div id="HelloComponent">
+    </div>
+</body>
+<script  type='text/babel'>
+    let  Test = React.createClass({
+         getInitialState(){
+             return {
+                 message:'测试'
+             }
+         },
+         render(){
+             return <div>
+                {this.state.message + this.props.word}
+            </div>
+         }
+    })
+    ReactDOM.render(<Test  word='props传递的数据'/>,document.getElementById('HelloComponent'))
+    //render是用来检测本组件的state和props，返回单一组件实例
+    //{}里面调用state里面的数据，不能直接用属性名，要用this.state.属性名,props如同理
+</script>
+</html>

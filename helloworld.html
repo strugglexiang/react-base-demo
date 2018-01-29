@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/helloworld.css">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+    <div id="reactContainer">
+
+    </div>
+</body>
+<script>
+     // 创建React组件类
+      let helloComponent = React.createClass({
+          render(){
+              return React.createElement('h1',null,'Hello World')
+          }
+      })
+    //  解析React组件类为标准的html格式并插入到指定节点
+      ReactDOM.render(
+          React.createElement(helloComponent,null),
+          document.getElementById('reactContainer')
+      )
+</script>
+</html>

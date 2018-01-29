@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>this.props.children</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test  =  React.createClass({
+            test(){
+               console.log(this.props.children)
+            //    console.log(React.Children.map(this.props.children,function(child){
+            //        return {child}
+            //    }))
+                //  console.log(this.props.children.map(function(child){
+                //       return child
+                //  }))
+            },
+            render(){
+                return (
+                    <div>
+                         <ul>
+                            {
+                                React.Children.map(this.props.children,function(child){
+                                    return (
+                                        <li>{child}</li>
+                                    )
+                                })
+                                 // 这种方法遍历没有key值
+                                // this.props.children.map(function(child){
+                                //     return <li key = {child}>{child}</li>
+                                // })
+                            }
+                          </ul>
+                         <button  onClick = {this.test}>ss</button>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(
+            <Test>
+                 <span>1</span>
+                 <span>2</span>
+            </Test>,
+            document.getElementById('container')
+        )
+    </script>
+</body>
+</html>

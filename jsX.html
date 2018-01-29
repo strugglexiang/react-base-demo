@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+    <div id="reactContainer">
+
+    </div>
+</body>
+<script  type='text/babel'>
+     // 创建React组件类
+      let HelloComponent = React.createClass({
+          render(){
+              return <h1>hello world {this.props.name ? this.props.mame : '曹尼玛'}</h1>;  //React.createElement('h1',null,'hello world') 首字母可以小写
+          }
+      })
+    //  解析React组件类为标准的html格式并插入到指定节点
+      ReactDOM.render(
+          <HelloComponent   name='jspang'/>,     //ReactDOM.createElement(HelloComponent,null)   首字母可以小写
+          document.getElementById('reactContainer')   
+      )
+    //注意，这里标签首字母只能大写    
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>Document</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test  =  React.createClass({
+           getInitialState(){
+              return {
+                  opacity:1.0
+              }
+           },
+           componentDidMount(){
+              let opacity = this.state.opacity
+              setInterval(function(){
+                 opacity -= 0.05
+                 this.setState({
+                     opacity
+                 })
+                 if(opacity <0.1 ){
+                    opacity = 1.0
+                 }
+              }.bind(this),100)
+              
+              
+           },            
+           render(){
+                return (
+                    <div>
+                        <h3 style={{opacity:this.state.opacity}}>{this.props.name}</h3>
+                    </div>
+                )
+           }
+        })
+        ReactDOM.render(<Test name='旷亚洲在闪烁'/>,document.getElementById('container'))
+    </script>
+</body>
+</html>

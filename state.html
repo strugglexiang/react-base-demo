@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+    <input type="text" disabled='true'>
+    <div id="HelloComponent">
+       21
+    </div>
+</body>
+<script  type='text/babel'>
+  //对比之下，如果原生的标签里面出现了类似disabled这样的属性，不管设置true或者flase都是禁止的
+
+
+  //React 的组件是由 state（状态集合），props（属性集合）组成的dom对象
+ // 注意，在React里面如果使用表达式的形式，就不需要外面的“”了，直接写 xx = {} 这是一个坑
+ // onClick 大小写是敏感的
+    
+    // let box = document.getElementById('HelloComponent')
+    // console.log(box)
+    // box.onclick = function(){
+    //     console.log(1)
+    // }
+
+       let Component = React.createClass( //首字母必须大写
+        {
+            getInitialState(){
+                return {                 //return 后面一定要跟一个东西，不能直接换行
+                    enable:false,
+                }
+            },
+            onclick(){
+                this.setState({
+                    enable:!this.state.enable,
+                    testAdd:'测试添加'
+                })
+                console.log(this.state.enable)
+            },
+            render(){
+                return <div>
+                    <input  type='text'  disabled = {this.state.enable}   />
+                    <button onClick={this.onclick}>点击切换编辑状态</button>
+                    {this.state.testAdd}
+                    </div>
+            }           
+        }
+
+       )
+       ReactDOM.render(<Component/>,document.getElementById('HelloComponent'))
+
+     /*
+        总结点
+        初始化状态方法
+        getInitialState
+        改变状态方法(或添加)
+        setState
+     */
+</script>
+</html>
