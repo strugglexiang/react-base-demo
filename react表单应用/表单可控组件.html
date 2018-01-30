@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>表单可控组件</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test = React.createClass({
+            getInitialState(){
+                return {
+                    value:'我是可控的'
+                }
+            },
+            changeHandle(event){
+                this.setState({
+                    value:event.target.value
+                })
+                console.log(this.state.value)
+            },
+            render(){
+                return (
+                   <div>
+                        <input value='旷亚洲是不可控的'  />  
+                        <input value={this.state.value}  onChange={this.changeHandle} />                    
+                   </div>
+                )
+            }
+        })
+        ReactDOM.render(<Test />,document.getElementById('container'))
+        /*
+           将input中的value绑定到state的React组件就是可控组件，反之则是不可控组件。
+        */
+        
+        /*
+           1.这里和vue中是不同的，vue中的组件是很自由的，可以不绑定在data里面的情况下改变值
+           2. React 把组件变为可控的就要的value绑定state，并且绑定change事件
+        */
+
+    </script>
+</body>
+</html>

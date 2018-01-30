@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>表单name复用</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test = React.createClass({
+            getInitialState(){
+                return {
+                    name:'',
+                    age:'',
+                    checked:false,
+                    selected:'moster',
+                }
+            },
+            changeHandel(event){
+                let obj ={}
+                // console.log(event)
+                console.dir(event.target)
+                // console.log(event.target.name)
+                obj[event.target.name] = event.target.name === 'checked' ? event.target.checked : event.target.value
+                console.log(obj)
+                this.setState(obj)
+            },
+            formSubmit(event){
+                event.preventDefault();
+                console.log(this.state)
+                let pd = this.state.checked === true ?'是':'不是'
+                let type = this.state.selected === 'moster' ? '丑八怪' : this.state.selected === 'man' ? '帅哥' : '美女'
+                alert(this.state.name + pd + this.state.age + '岁' + type)
+            },
+            render(){
+                return (
+                   <div>
+                      <form  onSubmit={this.formSubmit}>
+                          <label  htmlFor='username' >请输入姓名：</label>
+                          <input type='text' name='name' id='username' onChange={this.changeHandel} />
+                          <br/>
+                          <label  htmlFor='checked' >请选择是否：</label>
+                          <input type='checkbox' name='checked' id='checked' onChange={this.changeHandel} />
+                          <br/>
+                          <label  htmlFor='age' >请选择年龄：</label>
+                          17<input type='radio' name='age' id='age' value='17' onChange={this.changeHandel} />
+                          18<input type='radio' name='age' id='age' value='18' onChange={this.changeHandel} />
+                          <br/>
+                          <label  htmlFor='selected' >请选择类别：</label>
+                          <select  id='selected' name='selected' onChange={this.changeHandel}  >
+                              <option  value = 'moster'>丑八怪</option>
+                              <option value = 'man'>帅哥</option>
+                              <option value = 'woman'>美女</option>
+                          </select>
+                          <br/>
+                          <button>点击输出</button>
+                      </form>
+                   </div>
+                )
+            }
+        })
+        ReactDOM.render(<Test />,document.getElementById('container'))
+        
+        /*
+          1. 独属于React 的方法， 在input标签里面写好name属性，就可以获取当前input框值的类型
+           text value
+           checkbox checked 
+           select value
+           radio value
+          2. 就只有checkbox的值的checked
+        */
+
+    </script>
+</body>
+</html>

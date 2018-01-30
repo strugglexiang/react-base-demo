@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.js"></script>
+    <script src="../js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>表单不可控组件</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test = React.createClass({
+            changeHandel(event){
+               console.log(this.refs.test)
+               let input = ReactDOM.findDOMNode(this.refs.test)
+               console.log(input.value)
+            },
+            changeHandel1(event){
+                var inputValue=ReactDOM.findDOMNode(this.refs.test1).value;
+                console.log(inputValue);
+            },
+            render(){
+                return (
+                   <div>
+                       <input type='text'   value='不可控的'/>
+                       <input type='text'   value='不可控的,可以监控却不能改变值'   onChange={this.changeHandel} ref='test'/>
+                       <input type='text'   defaultValue='不可控的,监控改变值'   onChange={this.changeHandel1} ref='test1'/>
+                   </div>
+                )
+            }
+        })
+        ReactDOM.render(<Test />,document.getElementById('container'))
+        
+        /*
+           ReactDOM.findDOMNode(this.refs.名)
+           defaultValue
+           不推荐使用
+        */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.35/browser.js"></script>    
+    <title>ref获取真实dom节点</title>
+</head>
+<body> 
+    <div id="container">
+
+    </div>
+    <script type='text/babel'>
+        let Test = React.createClass({
+            click(){
+               console.log(this.refs)
+               this.refs.text.focus()
+            },
+            render(){
+                return (
+                   <div>
+                       <input type='text'  ref='text'  />
+                       <input type='button' value='focu the text' onClick={this.click} />
+                   </div>
+                )
+            }
+        })
+        ReactDOM.render(<Test />,document.getElementById('container'))
+        
+        /*
+          1.文档渲染后才能使用ref
+          2.this.refsp['ref name']
+        */
+  
+
+    </script>
+</body>
+</html>
